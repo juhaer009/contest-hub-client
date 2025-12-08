@@ -1,22 +1,69 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const handleRegister = (data) => {
+    // console.log(data);
+  };
   return (
     <div>
-      <form className="card-body">
+      <form onSubmit={handleSubmit(handleRegister)} className="card-body">
         <fieldset className="fieldset">
           <label className="label">Name</label>
-          <input type="text" className="input" placeholder="Name" />
+          <input
+            type="text"
+            className="input"
+            {...register("name", { required: true })}
+            placeholder="Name"
+          />
+          {errors.name && <p className="text-red-500">Name is Required</p>}
           <label className="label">Email</label>
-          <input type="email" className="input" placeholder="Email" />
+          <input
+            type="email"
+            className="input"
+            {...register("email", { required: true })}
+            placeholder="Email"
+          />
+          {errors.email && <p className="text-red-500">Email is Required</p>}
           <label className="label">Photo URL</label>
-          <input type="text" className="input" placeholder="Photo URL" />
+          <input
+            type="text"
+            className="input"
+            {...register("photoURL", { required: true })}
+            placeholder="Photo URL"
+          />
+          {errors.photoURL && <p className="text-red-500">Photo is Required</p>}
           <label className="label">Password</label>
-          <input type="password" className="input" placeholder="Password" />
-          <div>
-            <a className="link link-hover">Forgot password?</a>
-          </div>
+          <input
+            type="password"
+            className="input"
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).+$/,
+            })}
+            placeholder="Password"
+          />
+          {errors.password?.type === "required" && (
+            <p className="text-red-500">Password is Required</p>
+          )}
+          {errors.password?.type === "minLength" && (
+            <p className="text-red-500">
+              Password must be 6 or more characters long
+            </p>
+          )}
+          {errors.password?.type === "pattern" && (
+            <p className="text-red-500">
+              Password must have atleast one lowercase, one uppercase and a
+              special character
+            </p>
+          )}
           <button className="btn btn-primary mt-4">Register</button>
         </fieldset>
       </form>
@@ -55,7 +102,10 @@ const Register = () => {
         </button>
       </div>
       <span className="ml-10 mt-2">
-        Already Have an account? <Link to='/auth' className="text-primary">LogIn</Link>
+        Already Have an account?{" "}
+        <Link to="/auth" className="text-primary">
+          LogIn
+        </Link>
       </span>
     </div>
   );
