@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const {
@@ -8,8 +10,47 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { createUser, setUser, userProfile, googleLogIn } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = (data) => {
     // console.log(data);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        userProfile({ displayName: data.name, photoURL: data.photoURL })
+          .then(() => {
+            setUser({
+              ...user,
+              displayName: data.name,
+              photoURL: data.photoURL,
+            });
+            navigate(`${location.state ? location.state : "/"}`);
+            toast("Registered Successfully!!");
+          })
+          .catch((error) => {
+            console.log(error);
+            setUser(user);
+          });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
+
+  const handleGoogleLogIn = () => {
+    googleLogIn()
+      .then((result) => {
+        const user = result.user;
+        // console.log(user);
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
   };
   return (
     <div>
@@ -70,7 +111,10 @@ const Register = () => {
       <span className="ml-22">---------- or -----------</span>
       {/* Google */}
       <div className="ml-20">
-        <button className="btn bg-white text-black border-[#e5e5e5]">
+        <button
+          onClick={handleGoogleLogIn}
+          className="btn bg-white text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"
