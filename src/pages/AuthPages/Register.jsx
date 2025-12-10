@@ -147,7 +147,7 @@ const Register = () => {
       </div>
       <span className="ml-10 mt-2">
         Already Have an account?{" "}
-        <Link to="/auth" className="text-primary">
+        <Link to="/auth" className="text-secondary">
           LogIn
         </Link>
       </span>

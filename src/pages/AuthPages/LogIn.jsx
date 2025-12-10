@@ -119,7 +119,7 @@ const LogIn = () => {
       </div>
       <span className="ml-10 mt-2">
         Don't Have an account?{" "}
-        <Link state={location?.state} to="/register" className="text-secondary">
+        <Link state={location?.state} to="/auth/register" className="text-secondary">
           Register
         </Link>
       </span>
