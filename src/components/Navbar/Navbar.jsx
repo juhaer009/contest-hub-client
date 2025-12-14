@@ -79,7 +79,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-2 w-40 p-2 shadow"
             >
               <li>
-                <NavLink to="/profile">My Profile</NavLink>
+                <p className="font-semibold text-xl text-secondary" >{user.displayName}</p>
               </li>
               <li>
                 <NavLink to="/dashboard">Dashboard</NavLink>
