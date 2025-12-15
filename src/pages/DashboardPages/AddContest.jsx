@@ -1,11 +1,15 @@
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
 // import "cally";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddContest = () => {
   const { register, handleSubmit } = useForm();
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const handleAddContest = (data) => {
     console.log(data);
+    console.log(selectedDate);
   };
   return (
     <div className="my-3">
@@ -23,7 +27,6 @@ const AddContest = () => {
                 {...register("name")}
                 placeholder="Name"
               />
-
               <label className="label">Image</label>
               <input
                 type="text"
@@ -31,7 +34,6 @@ const AddContest = () => {
                 {...register("image ")}
                 placeholder="Image"
               />
-
               <label className="label">Description</label>
               <input
                 type="text"
@@ -39,7 +41,6 @@ const AddContest = () => {
                 {...register("description")}
                 placeholder="Description"
               />
-
               <label className="label">Price</label>
               <input
                 type="number"
@@ -47,7 +48,6 @@ const AddContest = () => {
                 {...register("price")}
                 placeholder="$ Price"
               />
-
               <label className="label">Prize Money</label>
               <input
                 type="number"
@@ -55,7 +55,6 @@ const AddContest = () => {
                 {...register("prizeMoney")}
                 placeholder="Prize Money"
               />
-
               <label className="label">Task Instruction</label>
               <input
                 type="text"
@@ -63,68 +62,12 @@ const AddContest = () => {
                 {...register("taskInstruction")}
                 placeholder="Task Instruction"
               />
-
-              {/* <label className="label">Contest Type</label>
-              <input
-                type="text"
-                className="input"
-                {...register("contestType")}
-                placeholder="Contest Type"
-              /> */}
-              <label className="label">Contest Type</label>
-              <legend className="fieldset-legend">Contest Type</legend>
-              <select {...register("contestType")} defaultValue="Pick a contest type" className="select">
-                <option disabled={true}>Pick a Contest type</option>
-                <option>Design Contest</option>
-                <option>Photography Contest</option>
-                <option>Hackathon</option>
-                <option>Gaming Tournament</option>
-                <option>Coding Contest</option>
-              </select>
-
-              {/* <label className="label">Deadline</label>
-              <button
-                popoverTarget="cally-popover1"
-                className="input input-border"
-                id="cally1"
-                // style="anchorName:--cally1"
-              >
-                Pick a date
-              </button>
-              <div
-                popover
-                id="cally-popover1"
-                className="dropdown bg-base-100 rounded-box shadow-lg"
-                // style="positionAnchor:--cally1"
-              >
-                <calendar-date
-                  class="cally"
-                //   onchange={
-                //     (document.getElementById("cally1").innerText = this.value)
-                //   }
-                >
-                  <svg
-                    aria-label="Previous"
-                    className="fill-current size-4"
-                    slot="previous"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M15.75 19.5 8.25 12l7.5-7.5"></path>
-                  </svg>
-                  <svg
-                    aria-label="Next"
-                    className="fill-current size-4"
-                    slot="next"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path>
-                  </svg>
-                  <calendar-month></calendar-month>
-                </calendar-date>
-              </div> */}
-
+              <label className="label">Deadline</label>
+              <DatePicker
+                showIcon
+                selected={selectedDate}
+                onChange={setSelectedDate}
+              />
               <button className="btn btn-primary mt-4">Create</button>
             </fieldset>
           </form>
