@@ -1,23 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
 // import "cally";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddContest = () => {
   const { register, handleSubmit } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
   const handleAddContest = (data) => {
     // console.log(data);
     // console.log(selectedDate);
     const newContest = {
       ...data,
       deadline: selectedDate,
+      creatorMail: user?.email,
     };
     axiosSecure.post("/contests", newContest).then((res) => {
-      console.log("after creating contest", res.data);
+      // console.log("after creating contest", res.data);
+      if (res.data.insertedId) {
+        toast("contest created successfully!!");
+      }
     });
   };
   return (
@@ -71,6 +78,21 @@ const AddContest = () => {
                 {...register("taskInstruction")}
                 placeholder="Task Instruction"
               />
+              <label className="label">Contest Type</label>
+              <legend className="fieldset-legend">Contest Type</legend>
+              <select
+                {...register("contestType")}
+                defaultValue="Pick a browser"
+                className="select"
+              >
+                <option disabled={true}>Pick a contest type</option>
+                <option>Hackathon</option>
+                <option>Data Science Competition</option>
+                <option>Gaming Tournament</option>
+                <option>Quiz Contest</option>
+                <option>Design Contest</option>
+                <option>Video Making Contest</option>
+              </select>
               <label className="label">Deadline</label>
               <DatePicker
                 showIcon

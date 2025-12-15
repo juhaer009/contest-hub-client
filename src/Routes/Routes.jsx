@@ -7,6 +7,7 @@ import LogIn from "../pages/AuthPages/LogIn";
 import Register from "../pages/AuthPages/Register";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import AddContest from "../pages/DashboardPages/AddContest";
+import MyCreatedContests from "../pages/DashboardPages/MyCreatedContests";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/add-contest",
         Component: AddContest,
+      },
+      {
+        path: "/dashboard/my-created-contests",
+        Component: MyCreatedContests,
       },
     ],
   },

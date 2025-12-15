@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTrophy } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { NavLink, Outlet } from "react-router";
 
@@ -76,8 +77,19 @@ const DashboardLayout = () => {
                 data-tip="Add-Contest"
                 to="/dashboard/add-contest"
               >
-                <IoIosAddCircleOutline />
+                <IoIosAddCircleOutline size="20px" />
                 <span className="is-drawer-close:hidden">Add Contest</span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My-Created-Contests"
+                to="/dashboard/my-created-contests"
+              >
+                <FaTrophy size="20px" />
+                <span className="is-drawer-close:hidden">My Created Contests</span>
               </NavLink>
             </li>
           </ul>
