@@ -3,13 +3,22 @@ import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
 // import "cally";
 import "react-datepicker/dist/react-datepicker.css";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddContest = () => {
   const { register, handleSubmit } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const axiosSecure = useAxiosSecure();
   const handleAddContest = (data) => {
-    console.log(data);
-    console.log(selectedDate);
+    // console.log(data);
+    // console.log(selectedDate);
+    const newContest = {
+      ...data,
+      deadline: selectedDate,
+    };
+    axiosSecure.post("/contests", newContest).then((res) => {
+      console.log("after creating contest", res.data);
+    });
   };
   return (
     <div className="my-3">
