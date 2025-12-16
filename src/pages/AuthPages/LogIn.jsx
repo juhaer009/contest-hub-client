@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const LogIn = () => {
+  const location = useLocation();
+  // console.log(location)
   const {
     register,
     handleSubmit,

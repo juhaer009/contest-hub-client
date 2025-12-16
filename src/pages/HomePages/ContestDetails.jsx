@@ -27,7 +27,9 @@ const ContestDetails = () => {
       <div>
         <img className="w-full h-70 rounded-2xl" src={contest.image} alt="" />
         <div className="mt-4">
-          <h2 className="text-2xl text-secondary font-semibold ">Description</h2>
+          <h2 className="text-2xl text-secondary font-semibold ">
+            Description
+          </h2>
           <p className="mt-2">{contest.description}</p>
         </div>
       </div>

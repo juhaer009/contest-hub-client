@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const ContestCard = ({ contest }) => {
   //   console.log(contest);
+  const location = useLocation();
+  // console.log(location)
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>
@@ -18,7 +20,11 @@ const ContestCard = ({ contest }) => {
           </div>
           <div className="badge badge-outline border-primary">Products</div>
         </div>
-        <Link to={`/contest-details/${contest._id}`} className="btn btn-primary text-white">
+        <Link
+          to={`/contest-details/${contest._id}`}
+          className="btn btn-primary text-white"
+          state={location.pathname}
+        >
           Show Details
         </Link>
       </div>
