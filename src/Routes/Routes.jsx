@@ -11,6 +11,7 @@ import MyCreatedContests from "../pages/DashboardPages/MyCreatedContests";
 import ContestDetails from "../pages/HomePages/ContestDetails";
 import PrivateRoute from "../Provider/PrivateRoute";
 import UpdateContest from "../pages/DashboardPages/UpdateContest";
+import UserManagement from "../pages/DashboardPages/UserManagement";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/update-contest/:id",
         Component: UpdateContest,
+      },
+      {
+        path: "/dashboard/user-management",
+        Component: UserManagement,
       },
     ],
   },
