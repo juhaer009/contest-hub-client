@@ -31,6 +31,8 @@ const ContestDetails = () => {
             Description
           </h2>
           <p className="mt-2">{contest.description}</p>
+          <h2 className="text-2xl text-secondary font-semibold mt-4">Task Details</h2>
+          <p className="mt-2">{contest.taskInstruction}</p>
         </div>
       </div>
     </div>

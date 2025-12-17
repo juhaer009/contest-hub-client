@@ -88,7 +88,10 @@ const MyCreatedContests = () => {
                   </NavLink>
                   {contest.status === "pending" && (
                     <>
-                      <NavLink className="btn btn-sm btn-secondary mr-3">
+                      <NavLink
+                        to={`/dashboard/update-contest/${contest._id}`}
+                        className="btn btn-sm btn-secondary mr-3"
+                      >
                         <MdEdit />
                       </NavLink>
                       <button
@@ -132,7 +135,10 @@ const MyCreatedContests = () => {
                 </NavLink>
                 {contest.status === "pending" && (
                   <>
-                    <NavLink className="btn btn-sm btn-secondary mr-3">
+                    <NavLink
+                      to={`/dashboard/update-contest/${contest._id}`}
+                      className="btn btn-sm btn-secondary mr-3"
+                    >
                       <MdEdit />
                     </NavLink>
                     <button

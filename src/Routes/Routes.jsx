@@ -10,6 +10,7 @@ import AddContest from "../pages/DashboardPages/AddContest";
 import MyCreatedContests from "../pages/DashboardPages/MyCreatedContests";
 import ContestDetails from "../pages/HomePages/ContestDetails";
 import PrivateRoute from "../Provider/PrivateRoute";
+import UpdateContest from "../pages/DashboardPages/UpdateContest";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-created-contests",
         Component: MyCreatedContests,
+      },
+      {
+        path: "/dashboard/update-contest/:id",
+        Component: UpdateContest,
       },
     ],
   },

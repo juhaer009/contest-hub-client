@@ -1,40 +1,51 @@
-import { useContext, useState } from "react";
+import React from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
-// import "cally";
 import "react-datepicker/dist/react-datepicker.css";
+import { useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
-const AddContest = () => {
-  const { register, handleSubmit } = useForm();
+const UpdateContest = () => {
+  const { register, handleSubmit, reset } = useForm();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
-  const handleAddContest = (data) => {
-    // console.log(data);
-    // console.log(selectedDate);
-    const newContest = {
+  const { id } = useParams();
+  const { data: contest = [] } = useQuery({
+    queryKey: ["update-contest", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/contests/${id}`);
+      reset(res.data);
+      return res.data;
+    },
+  });
+
+  const handleUpdateContest = (data) => {
+    const updateContest = {
       ...data,
       deadline: selectedDate,
-      creatorMail: user?.email,
     };
-    axiosSecure.post("/contests", newContest).then((res) => {
-      // console.log("after creating contest", res.data);
-      if (res.data.insertedId) {
-        toast("contest created successfully!!");
+    // console.log(updateContest);
+    axiosSecure.patch(`/contests/${id}`, updateContest).then((res) => {
+      if (res.data.acknowledged) {
+        toast("Contest Updated Successfuly!!");
       }
     });
   };
+
   return (
     <div className="my-3">
       <h1 className="text-secondary text-center font-bold text-3xl">
-        Add a Contest
+        Update a Contest
       </h1>
       <div className="flex justify-center items-center my-10">
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handleSubmit(handleAddContest)} className="card-body">
+          <form
+            onSubmit={handleSubmit(handleUpdateContest)}
+            className="card-body"
+          >
             <fieldset className="fieldset">
               <label className="label">Name</label>
               <input
@@ -80,11 +91,7 @@ const AddContest = () => {
               />
               <label className="label">Contest Type</label>
               <legend className="fieldset-legend">Contest Type</legend>
-              <select
-                {...register("contestType")}
-                defaultValue="Pick a browser"
-                className="select"
-              >
+              <select {...register("contestType")} className="select">
                 <option disabled={true}>Pick a contest type</option>
                 <option>Hackathon</option>
                 <option>Data Science Competition</option>
@@ -96,11 +103,12 @@ const AddContest = () => {
               </select>
               <label className="label">Deadline</label>
               <DatePicker
+                defaultValue={contest.deadline}
                 showIcon
                 selected={selectedDate}
                 onChange={setSelectedDate}
               />
-              <button className="btn btn-primary mt-4">Create</button>
+              <button className="btn btn-primary mt-4">Update</button>
             </fieldset>
           </form>
         </div>
@@ -109,4 +117,4 @@ const AddContest = () => {
   );
 };
 
-export default AddContest;
+export default UpdateContest;
