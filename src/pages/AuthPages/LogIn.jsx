@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const LogIn = () => {
   const location = useLocation();
@@ -13,6 +14,7 @@ const LogIn = () => {
     formState: { errors },
   } = useForm();
   const { logIn, googleLogIn } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const handleLogIn = (data) => {
     // console.log(data);
@@ -32,9 +34,17 @@ const LogIn = () => {
   const handleGoogleLogIn = () => {
     googleLogIn()
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         // console.log(user);
-        navigate(`${location.state ? location.state : "/"}`);
+        const userInfo = {
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user data has been stored", res.data);
+          navigate(`${location.state ? location.state : "/"}`);
+        });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -121,7 +131,11 @@ const LogIn = () => {
       </div>
       <span className="ml-10 mt-2">
         Don't Have an account?{" "}
-        <Link state={location?.state} to="/auth/register" className="text-secondary">
+        <Link
+          state={location?.state}
+          to="/auth/register"
+          className="text-secondary"
+        >
           Register
         </Link>
       </span>

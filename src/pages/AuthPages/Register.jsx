@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -13,12 +15,23 @@ const Register = () => {
   const { createUser, setUser, userProfile, googleLogIn } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const handleRegister = (data) => {
     // console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
+        const userInfo = {
+          displayName: data.name,
+          email: data.email,
+          photoURL: data.photoURL,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user created in database");
+          }
+        });
         userProfile({ displayName: data.name, photoURL: data.photoURL })
           .then(() => {
             setUser({
@@ -43,9 +56,17 @@ const Register = () => {
   const handleGoogleLogIn = () => {
     googleLogIn()
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         // console.log(user);
-        navigate(`${location.state ? location.state : "/"}`);
+        const userInfo = {
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user data has been stored", res.data);
+          navigate(`${location.state ? location.state : "/"}`);
+        });
       })
       .catch((error) => {
         const errorMessage = error.message;
