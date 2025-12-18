@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTrophy } from "react-icons/fa";
+import { FaTasks, FaTrophy } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { NavLink, Outlet } from "react-router";
 import { IoHomeOutline } from "react-icons/io5";
@@ -94,6 +94,19 @@ const DashboardLayout = () => {
                 <MdOutlineManageAccounts size="20px" />
                 <span className="is-drawer-close:hidden">
                   Manage Users
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Manage Contest"
+                to="/dashboard/contest-management"
+              >
+                <FaTasks size="20px" />
+                <span className="is-drawer-close:hidden">
+                  Manage Contests
                 </span>
               </NavLink>
             </li>

@@ -115,7 +115,8 @@ const UserManagement = () => {
         {users.map((user) => (
           <div key={user._id} className="card bg-base-100 shadow-md border">
             <div className="card-body p-4">
-              <div className="flex justify-between items-center">
+              <div className="flex gap-2 items-center">
+                <img className="w-12 h-12 rounded-2xl" src={user.photoURL} alt="" />
                 <h2 className="card-title text-lg">{user.displayName}</h2>
               </div>
 
@@ -125,12 +126,36 @@ const UserManagement = () => {
               </p>
 
               <div className="card-actions justify-end mt-3">
-                <NavLink className="btn btn-sm btn-secondary mr-3">
-                  View Submissions
-                </NavLink>
-
-                <NavLink className="btn btn-sm btn-secondary mr-3"></NavLink>
-                <button className="btn btn-sm btn-secondary"></button>
+                {user.role === "admin" ? (
+                  <button
+                    onClick={() => handleUser(user, "user")}
+                    className="btn btn-sm btn-error"
+                  >
+                    <FiShieldOff size="20px" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleUser(user, "admin")}
+                    className="btn btn-sm btn-secondary"
+                  >
+                    <FaUserShield size="20px" />
+                  </button>
+                )}
+                {user.role === "creator" ? (
+                  <button
+                    onClick={() => handleUser(user, "user")}
+                    className="btn btn-sm btn-error"
+                  >
+                    <FaUserSlash size="20px" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleUser(user, "creator")}
+                    className="btn btn-sm btn-secondary"
+                  >
+                    <FaUserPlus size="20px" />
+                  </button>
+                )}
               </div>
             </div>
           </div>

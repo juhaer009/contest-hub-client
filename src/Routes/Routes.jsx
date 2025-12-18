@@ -12,6 +12,7 @@ import ContestDetails from "../pages/HomePages/ContestDetails";
 import PrivateRoute from "../Provider/PrivateRoute";
 import UpdateContest from "../pages/DashboardPages/UpdateContest";
 import UserManagement from "../pages/DashboardPages/UserManagement";
+import ContestManagement from "../pages/DashboardPages/ContestManagement";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/user-management",
         Component: UserManagement,
+      },
+      {
+        path: "/dashboard/contest-management",
+        Component: ContestManagement,
       },
     ],
   },
