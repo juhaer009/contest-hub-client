@@ -3,16 +3,33 @@ import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../components/Loading";
 import { NavLink } from "react-router";
+import { FiShieldOff } from "react-icons/fi";
+import { FaUserPlus, FaUserShield, FaUserSlash } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], isLoading } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
+
+  const handleUser = (user, status) => {
+    const roleInfo = { role: status };
+    axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
+      if (res.data.modifiedCount) {
+        refetch();
+        toast(`${user.displayName}'s role has been set as ${status}`);
+      }
+    });
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -29,26 +46,64 @@ const UserManagement = () => {
             <tr>
               <th>#</th>
               <th>Name</th>
+              <th>Email</th>
               <th>Role</th>
-              <th>Actions</th>
+              <th>Admin Actions</th>
+              <th>Creator Actions</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
               <tr key={user._id}>
                 <td>{index + 1}</td>
-                <td className="font-medium">{user.displayName}</td>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img src={user.photoURL} alt="" />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{user.displayName}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>
-                  <NavLink className="btn btn-sm btn-secondary mr-3">
-                    View Submissions
-                  </NavLink>
-                  <NavLink className="btn btn-sm btn-secondary mr-3">
-        
-                  </NavLink>
-                  <button className="btn btn-sm btn-secondary">
-                    
-                  </button>
+                  {user.role === "admin" ? (
+                    <button
+                      onClick={() => handleUser(user, "user")}
+                      className="btn btn-sm btn-error"
+                    >
+                      <FiShieldOff size="20px" />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleUser(user, "admin")}
+                      className="btn btn-sm btn-secondary"
+                    >
+                      <FaUserShield size="20px" />
+                    </button>
+                  )}
+                </td>
+
+                <td>
+                  {user.role === "creator" ? (
+                    <button
+                      onClick={() => handleUser(user, "user")}
+                      className="btn btn-sm btn-error"
+                    >
+                      <FaUserSlash size="20px" />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleUser(user, "creator")}
+                      className="btn btn-sm btn-secondary"
+                    >
+                      <FaUserPlus size="20px" />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -74,12 +129,8 @@ const UserManagement = () => {
                   View Submissions
                 </NavLink>
 
-                <NavLink className="btn btn-sm btn-secondary mr-3">
-                  
-                </NavLink>
-                <button className="btn btn-sm btn-secondary">
-                  
-                </button>
+                <NavLink className="btn btn-sm btn-secondary mr-3"></NavLink>
+                <button className="btn btn-sm btn-secondary"></button>
               </div>
             </div>
           </div>
