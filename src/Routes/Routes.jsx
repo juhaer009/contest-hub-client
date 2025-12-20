@@ -13,6 +13,7 @@ import PrivateRoute from "../Provider/PrivateRoute";
 import UpdateContest from "../pages/DashboardPages/UpdateContest";
 import UserManagement from "../pages/DashboardPages/UserManagement";
 import ContestManagement from "../pages/DashboardPages/ContestManagement";
+import AdminRoute from "../Provider/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/user-management",
-        Component: UserManagement,
+        element: <AdminRoute><UserManagement></UserManagement></AdminRoute>
       },
       {
         path: "/dashboard/contest-management",

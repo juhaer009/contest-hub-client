@@ -4,8 +4,11 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { NavLink, Outlet } from "react-router";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineManageAccounts } from "react-icons/md";
+import useRole from "../../hooks/useRole";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
+  // console.log(role);
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -61,55 +64,61 @@ const DashboardLayout = () => {
             </li>
 
             {/* List item */}
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Add-Contest"
-                to="/dashboard/add-contest"
-              >
-                <IoIosAddCircleOutline size="20px" />
-                <span className="is-drawer-close:hidden">Add Contest</span>
-              </NavLink>
-            </li>
+            {role.role === "creator" && (
+              <>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Add-Contest"
+                    to="/dashboard/add-contest"
+                  >
+                    <IoIosAddCircleOutline size="20px" />
+                    <span className="is-drawer-close:hidden">Add Contest</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My-Created-Contests"
-                to="/dashboard/my-created-contests"
-              >
-                <FaTrophy size="20px" />
-                <span className="is-drawer-close:hidden">
-                  My Created Contests
-                </span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My-Created-Contests"
+                    to="/dashboard/my-created-contests"
+                  >
+                    <FaTrophy size="20px" />
+                    <span className="is-drawer-close:hidden">
+                      My Created Contests
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Users"
-                to="/dashboard/user-management"
-              >
-                <MdOutlineManageAccounts size="20px" />
-                <span className="is-drawer-close:hidden">
-                  Manage Users
-                </span>
-              </NavLink>
-            </li>
+            {role.role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Users"
+                    to="/dashboard/user-management"
+                  >
+                    <MdOutlineManageAccounts size="20px" />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </NavLink>
+                </li>
 
-            <li>
-              <NavLink
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Contest"
-                to="/dashboard/contest-management"
-              >
-                <FaTasks size="20px" />
-                <span className="is-drawer-close:hidden">
-                  Manage Contests
-                </span>
-              </NavLink>
-            </li>
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Contest"
+                    to="/dashboard/contest-management"
+                  >
+                    <FaTasks size="20px" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Contests
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
