@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../components/Loading";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const ContestDetails = () => {
   const { id } = useParams();
   //   console.log(id);
   const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
   const { data: contest = [], isLoading } = useQuery({
     queryKey: ["Contest-details", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/contests/${id}`);
+      return res.data;
+    },
+  });
+
+  const { data: payment = [] } = useQuery({
+    queryKey: ["Contest-payments", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/payment/${id}`);
       return res.data;
     },
   });
@@ -38,7 +48,8 @@ const ContestDetails = () => {
         </div>
       </div>
       <div>
-        {contest.paymentStatus === "paid" ? (
+        {payment.paymentStatus === "paid" &&
+        payment.customerEmail === user.email ? (
           <Link>
             <button className="btn btn-secondary text-white">Submit</button>
           </Link>
