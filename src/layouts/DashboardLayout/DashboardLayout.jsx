@@ -5,6 +5,7 @@ import { NavLink, Outlet } from "react-router";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import useRole from "../../hooks/useRole";
+import { CgProfile } from "react-icons/cg";
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -65,12 +66,27 @@ const DashboardLayout = () => {
 
             <li>
               <NavLink
-                to="/dashboard/my-participated contests"
+                to="/dashboard/my-participated-contests"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="my-participated-contests"
               >
                 <FaChartBar size="20px" />
-                <span className="is-drawer-close:hidden">My Participated Contests</span>
+                <span className="is-drawer-close:hidden">
+                  My Participated Contests
+                </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/dashboard/my-profile"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="my-participated-contests"
+              >
+                <CgProfile size="20px" />
+                <span className="is-drawer-close:hidden">
+                  My Participated Contests
+                </span>
               </NavLink>
             </li>
 
