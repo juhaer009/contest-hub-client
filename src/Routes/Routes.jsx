@@ -14,6 +14,9 @@ import UpdateContest from "../pages/DashboardPages/UpdateContest";
 import UserManagement from "../pages/DashboardPages/UserManagement";
 import ContestManagement from "../pages/DashboardPages/ContestManagement";
 import AdminRoute from "../Provider/AdminRoute";
+import MakePayment from "../pages/DashboardPages/Payment/MakePayment";
+import PaymentSuccess from "../pages/DashboardPages/Payment/PaymentSuccess";
+import PaymentCanceled from "../pages/DashboardPages/Payment/PaymentCanceled";
 
 const router = createBrowserRouter([
   {
@@ -70,11 +73,36 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/user-management",
-        element: <AdminRoute><UserManagement></UserManagement></AdminRoute>
+        element: (
+          <AdminRoute>
+            <UserManagement></UserManagement>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/contest-management",
-        Component: ContestManagement,
+        element: (
+          <AdminRoute>
+            <ContestManagement></ContestManagement>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/make-payment/:contestId",
+        // Component: MakePayment,
+        element: (
+          <PrivateRoute>
+            <MakePayment></MakePayment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "/dashboard/payment-canceled",
+        Component: PaymentCanceled,
       },
     ],
   },

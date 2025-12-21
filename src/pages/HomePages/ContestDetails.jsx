@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../components/Loading";
@@ -31,9 +31,22 @@ const ContestDetails = () => {
             Description
           </h2>
           <p className="mt-2">{contest.description}</p>
-          <h2 className="text-2xl text-secondary font-semibold mt-4">Task Details</h2>
+          <h2 className="text-2xl text-secondary font-semibold mt-4">
+            Task Details
+          </h2>
           <p className="mt-2">{contest.taskInstruction}</p>
         </div>
+      </div>
+      <div>
+        {contest.paymentStatus === "paid" ? (
+          <Link>
+            <button className="btn btn-secondary text-white">Submit</button>
+          </Link>
+        ) : (
+          <Link to={`/dashboard/make-payment/${contest._id}`}>
+            <button className="btn btn-primary text-white">Make Payment</button>
+          </Link>
+        )}
       </div>
     </div>
   );
