@@ -17,6 +17,7 @@ import AdminRoute from "../Provider/AdminRoute";
 import MakePayment from "../pages/DashboardPages/Payment/MakePayment";
 import PaymentSuccess from "../pages/DashboardPages/Payment/PaymentSuccess";
 import PaymentCanceled from "../pages/DashboardPages/Payment/PaymentCanceled";
+import MyParticipatedContests from "../pages/DashboardPages/MyParticipatedContests";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/payment-canceled",
         Component: PaymentCanceled,
+      },
+      {
+        path: "/dashboard/my-participated contests",
+        element: (
+          <PrivateRoute>
+            <MyParticipatedContests></MyParticipatedContests>
+          </PrivateRoute>
+        ),
       },
     ],
   },
