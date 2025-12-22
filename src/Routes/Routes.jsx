@@ -64,15 +64,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/add-contest",
-        Component: AddContest,
+        element: (
+          <PrivateRoute>
+            <AddContest></AddContest>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-created-contests",
-        Component: MyCreatedContests,
+        element: (
+          <PrivateRoute>
+            <MyCreatedContests></MyCreatedContests>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/update-contest/:id",
-        Component: UpdateContest,
+        element: (
+          <PrivateRoute>
+            <UpdateContest></UpdateContest>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/user-management",

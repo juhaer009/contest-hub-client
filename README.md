@@ -1,16 +1,101 @@
-# React + Vite
+# 🏆 Contest Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Contest Hub is a modern web platform where users can discover, participate in, and manage various types of contests such as quizzes, coding challenges, creative competitions, and more.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Website
+👉 https://your-live-site-url.com
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🔐 Secure authentication system using Firebase
+- 👤 Role-based access (User, Creator, Admin)
+- 🏗️ Creators can create, update, and delete contests
+- 🧾 Users can view detailed contest information
+- 💳 Integrated Stripe payment system for paid contests
+- 📊 Real-time participant count and contest status tracking
+- 📝 Task submission system via modal interface
+- 🧠 Multiple contest types (Quiz, Coding, Design, Writing, etc.)
+- 📱 Fully responsive design for mobile, tablet, and desktop
+- ⚡ Fast data fetching and caching using React Query
+- 🛡️ Protected routes with JWT & Firebase token verification
+- 🎨 Clean UI built with Tailwind CSS and DaisyUI
+- 🔔 User-friendly alerts and confirmations with SweetAlert
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Technologies Used
+
+- React
+- React Router
+- Tailwind CSS
+- DaisyUI
+- React Icons
+- Firebase Authentication
+- Node.js & Express.js
+- MongoDB
+- Stripe Payment Gateway
+- TanStack React Query
+
+---
+
+## 📌 Purpose
+
+Contest Hub aims to provide a centralized platform for hosting and participating in online contests with a smooth user experience, secure payments, and modern UI.
+
+---
+
+## 📄 License
+
+This project is for educational and learning purposes.
+# 🏆 Contest Hub
+
+Contest Hub is a modern web platform where users can discover, participate in, and manage various types of contests such as quizzes, coding challenges, creative competitions, and more.
+
+---
+
+## ✨ Features
+
+- 🔐 Secure authentication system using Firebase
+- 👤 Role-based access (User, Creator, Admin)
+- 🏗️ Creators can create, update, and delete contests
+- 🧾 Users can view detailed contest information
+- 💳 Integrated Stripe payment system for paid contests
+- 📊 Real-time participant count and contest status tracking
+- 📝 Task submission system via modal interface
+- 🧠 Multiple contest types (Quiz, Coding, Design, Writing, etc.)
+- 📱 Fully responsive design for mobile, tablet, and desktop
+- ⚡ Fast data fetching and caching using React Query
+- 🛡️ Protected routes with JWT & Firebase token verification
+- 🎨 Clean UI built with Tailwind CSS and DaisyUI
+- 🔔 User-friendly alerts and confirmations with SweetAlert
+
+---
+
+## 🛠️ Technologies Used
+
+- React
+- React Router
+- Tailwind CSS
+- DaisyUI
+- React Icons
+- Firebase Authentication
+- Node.js & Express.js
+- MongoDB
+- Stripe Payment Gateway
+- TanStack React Query
+
+---
+
+## 📌 Purpose
+
+Contest Hub aims to provide a centralized platform for hosting and participating in online contests with a smooth user experience, secure payments, and modern UI.
+
+---
+
+## 📄 License
+
+This project is for educational and learning purposes.
