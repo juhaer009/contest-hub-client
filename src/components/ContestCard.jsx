@@ -18,7 +18,7 @@ const ContestCard = ({ contest }) => {
           <div className="badge badge-outline border-primary">
             {contest.contestType}
           </div>
-          <div className="badge badge-outline border-primary">Products</div>
+          <div className="badge badge-outline border-primary">Participants : {contest.paymentCount}</div>
         </div>
         <Link
           to={`/contest-details/${contest._id}`}

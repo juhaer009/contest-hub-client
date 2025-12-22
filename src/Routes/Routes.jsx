@@ -19,6 +19,7 @@ import PaymentSuccess from "../pages/DashboardPages/Payment/PaymentSuccess";
 import PaymentCanceled from "../pages/DashboardPages/Payment/PaymentCanceled";
 import MyParticipatedContests from "../pages/DashboardPages/MyParticipatedContests";
 import MyProfile from "../pages/DashboardPages/MyProfile";
+import SubmittedTask from "../pages/DashboardPages/SubmittedTask";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/submitted-task",
+        element: (
+          <PrivateRoute>
+            <SubmittedTask></SubmittedTask>
           </PrivateRoute>
         ),
       },

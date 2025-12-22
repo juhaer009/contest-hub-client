@@ -23,8 +23,9 @@ const MakePayment = () => {
       contestName: contest.name,
       customer_email: user.email,
       contestId: contest._id,
-      contestDeadline:contest.deadline,
+      contestDeadline: contest.deadline,
     };
+    // console.log(paymentInfo);
     const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
     console.log(res.data);
     window.location.href = res.data.url;

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Loading from "../../components/Loading";
@@ -83,9 +83,6 @@ const MyCreatedContests = () => {
                   </span>
                 </td>
                 <td>
-                  <NavLink className="btn btn-sm btn-secondary mr-3">
-                    View Submissions
-                  </NavLink>
                   {contest.status === "pending" && (
                     <>
                       <NavLink
@@ -107,6 +104,14 @@ const MyCreatedContests = () => {
             ))}
           </tbody>
         </table>
+        <div className="flex justify-center my-4">
+          <Link
+            to="/dashboard/submitted-task"
+            className="btn btn-secondary text-white"
+          >
+            View Submissions
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:hidden">
@@ -130,9 +135,6 @@ const MyCreatedContests = () => {
               </p>
 
               <div className="card-actions justify-end mt-3">
-                <NavLink className="btn btn-sm btn-secondary mr-3">
-                  View Submissions
-                </NavLink>
                 {contest.status === "pending" && (
                   <>
                     <NavLink
@@ -153,6 +155,12 @@ const MyCreatedContests = () => {
             </div>
           </div>
         ))}
+        <Link
+          to="/dashboard/submitted-task"
+          className="btn btn-secondary text-white"
+        >
+          View Submissions
+        </Link>
       </div>
     </div>
   );
