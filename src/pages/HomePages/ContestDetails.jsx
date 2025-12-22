@@ -22,13 +22,13 @@ const ContestDetails = () => {
     },
   });
 
-  const { data: payment = [] } = useQuery({
-    queryKey: ["Contest-payments", id],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/payment/${id}`);
-      return res.data;
-    },
-  });
+  // const { data: payment = [] } = useQuery({
+  //   queryKey: ["Contest-payments", id],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/payment/${id}`);
+  //     return res.data;
+  //   },
+  // });
   // console.log(payment);
 
   const handleModal = () => {
@@ -82,18 +82,18 @@ const ContestDetails = () => {
         </div>
       </div>
       <div className="mt-4">
-        {payment.paymentStatus === "paid"  ? (
+      
           <button
             onClick={handleModal}
             className="btn btn-secondary text-white"
           >
             Submit
           </button>
-        ) : (
+  
           <Link to={`/dashboard/make-payment/${contest._id}`}>
             <button className="btn btn-primary text-white">Make Payment</button>
           </Link>
-        )}
+        
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
         {/* <button
           className="btn"
