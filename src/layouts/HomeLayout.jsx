@@ -5,11 +5,13 @@ import Footer from '../components/Footer';
 
 const HomeLayout = () => {
     return (
-        <div className='max-w-7xl mx-auto'>
+        <>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+            <div className='max-w-7xl mx-auto pt-4 sm:pt-6 lg:pt-8'>
+                <Outlet></Outlet>
+            </div>
             <Footer></Footer>
-        </div>
+        </>
     );
 };
 

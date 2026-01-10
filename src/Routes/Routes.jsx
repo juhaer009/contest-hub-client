@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import HomeLayout from "../layouts/HomeLayout";
 import Home from "../pages/HomePages/Home";
 import AllContests from "../pages/HomePages/AllContests";
+import About from "../pages/HomePages/About";
+import Contacts from "../pages/HomePages/Contacts";
 import AuthLayout from "../layouts/AuthLayout";
 import LogIn from "../pages/AuthPages/LogIn";
 import Register from "../pages/AuthPages/Register";
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/allcontests",
         Component: AllContests,
+      },
+      {
+        path: "/about",
+        Component: About,
+      },
+      {
+        path: "/contacts",
+        Component: Contacts,
       },
       {
         path: "/contest-details/:id",

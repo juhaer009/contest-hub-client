@@ -2,3 +2,49 @@ a.active{
     text-decoration: underline;
     color: #4F46E5;
 }
+
+/* Sticky navbar styles */
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile menu improvements */
+@media (max-width: 1023px) {
+    .dropdown-content {
+        right: 0;
+        left: auto;
+    }
+}
+
+/* Ensure proper spacing for sticky navbar */
+body {
+    scroll-padding-top: 4rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+    .navbar {
+        min-height: 3.5rem;
+        padding: 0.5rem 0;
+    }
+    
+    .navbar-start .btn-ghost {
+        padding: 0.5rem;
+    }
+}
+
+/* Medium devices */
+@media (min-width: 641px) and (max-width: 1023px) {
+    .navbar {
+        min-height: 4rem;
+    }
+}
+
+/* Large devices */
+@media (min-width: 1024px) {
+    .navbar {
+        min-height: 4.5rem;
+    }
+}

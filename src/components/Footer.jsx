@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaTrophy } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer className="bg-[#4F46E5] text-white py-10 mt-16">
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo + Tagline */}
         <div className="flex items-center space-x-3">
           <FaTrophy className="text-[#F97316] text-4xl" />
@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-10 border-t border-white/20 pt-5 text-center text-sm opacity-80">
+      <div className="max-w-7xl mx-auto mt-10 border-t border-white/20 pt-5 text-center text-sm opacity-80">
         © {new Date().getFullYear()} Contest Hub — All Rights Reserved.
       </div>
     </footer>
