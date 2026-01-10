@@ -5,7 +5,7 @@ Contest Hub is a modern web platform where users can discover, participate in, a
 ---
 
 ## 🌐 Live Website
-👉 https://your-live-site-url.com
+👉 https://contest-hub-juhaer009.netlify.app
 
 ---
 
