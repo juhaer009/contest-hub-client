@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState, useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import ContestCard from "../../components/ContestCard";
+import Loading from "../../components/Loading"
 import { Link } from "react-router";
 import { FaTrophy, FaUsers, FaAward, FaChevronLeft, FaChevronRight, FaPaintBrush, FaCode, FaCamera, FaMusic, FaGamepad, FaPen, FaRocket, FaLock, FaClock, FaGift, FaStar, FaQuoteLeft, FaEnvelope, FaQuestion, FaArrowRight, FaPlay, FaCheck } from "react-icons/fa";
 
 const Home = () => {
   const axiosInstance = useAxios();
-  const { data: contests = [] } = useQuery({
+  const { data: contests = [], isLoading } = useQuery({
     queryKey: ["popular-contest"],
     queryFn: async () => {
       const res = await axiosInstance.get("/popular-contest");
@@ -212,10 +213,21 @@ const Home = () => {
               Discover trending contests and join thousands of participants in exciting challenges
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {contests.map((contest) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {isLoading ? 
+              <Loading></Loading> 
+              : 
+              contests.map((contest) => 
+                <ContestCard 
+                  key={contest._id} 
+                  contest={contest}
+                >
+                </ContestCard>
+              )
+            }
+            {/* {contests.map((contest) => (
               <ContestCard key={contest._id} contest={contest}></ContestCard>
-            ))}
+            ))} */}
           </div>
           <div className="text-center mt-12">
             <Link to="/allcontests">

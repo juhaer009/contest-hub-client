@@ -10,6 +10,38 @@ a.active{
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* Dropdown Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+    overflow: hidden;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.2s ease-out forwards;
+}
+
 /* Mobile menu improvements */
 @media (max-width: 1023px) {
     .dropdown-content {
@@ -46,5 +78,68 @@ body {
 @media (min-width: 1024px) {
     .navbar {
         min-height: 4.5rem;
+    }
+}
+
+/* Mobile menu specific styles */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 60;
+}
+
+.mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 70;
+}
+
+/* Ensure dropdowns appear above other content */
+.dropdown-menu {
+    z-index: 100 !important;
+}
+
+/* Fix for mobile touch targets */
+@media (max-width: 768px) {
+    .btn-ghost {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .menu li > * {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Enhanced dropdown animations */
+.animate-slide-down {
+    transform-origin: top;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transitions for menu items */
+.menu li > * {
+    transition: all 0.2s ease-in-out;
+}
+
+.menu li > *:hover {
+    transform: translateX(4px);
+}
+
+/* Backdrop blur effect for mobile menu */
+@supports (backdrop-filter: blur(10px)) {
+    .mobile-menu {
+        backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.95);
     }
 }

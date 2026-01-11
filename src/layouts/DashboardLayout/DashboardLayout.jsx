@@ -81,11 +81,11 @@ const DashboardLayout = () => {
               <NavLink
                 to="/dashboard/my-profile"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="my-participated-contests"
+                data-tip="Update-profile"
               >
                 <CgProfile size="20px" />
                 <span className="is-drawer-close:hidden">
-                  My Participated Contests
+                   Update Profile
                 </span>
               </NavLink>
             </li>

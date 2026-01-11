@@ -6,7 +6,7 @@ const ContestCard = ({ contest }) => {
   const location = useLocation();
   // console.log(location)
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <div className="card bg-base-100 w-76 shadow-sm">
       <figure>
         <img src={contest.image} alt="" />
       </figure>
@@ -15,6 +15,9 @@ const ContestCard = ({ contest }) => {
         <p>{contest.description?.split(" ").slice(0, 5).join(" ") + "...."}</p>
 
         <div className="card-actions justify-end">
+          <div className="badge badge-outline border-primary">
+            <span>$ {contest.price} </span>
+          </div>
           <div className="badge badge-outline border-primary">
             {contest.contestType}
           </div>
