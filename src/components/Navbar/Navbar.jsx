@@ -21,6 +21,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/contacts">Contacts</NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink to="/my-profile">My Profile</NavLink>
+        </li>
+      )}
     </>
   );
   const handleLogOut = () => {

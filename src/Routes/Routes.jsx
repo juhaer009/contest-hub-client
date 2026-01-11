@@ -4,6 +4,7 @@ import Home from "../pages/HomePages/Home";
 import AllContests from "../pages/HomePages/AllContests";
 import About from "../pages/HomePages/About";
 import Contacts from "../pages/HomePages/Contacts";
+import MyProfile from "../pages/HomePages/MyProfile";
 import AuthLayout from "../layouts/AuthLayout";
 import LogIn from "../pages/AuthPages/LogIn";
 import Register from "../pages/AuthPages/Register";
@@ -20,7 +21,7 @@ import MakePayment from "../pages/DashboardPages/Payment/MakePayment";
 import PaymentSuccess from "../pages/DashboardPages/Payment/PaymentSuccess";
 import PaymentCanceled from "../pages/DashboardPages/Payment/PaymentCanceled";
 import MyParticipatedContests from "../pages/DashboardPages/MyParticipatedContests";
-import MyProfile from "../pages/DashboardPages/MyProfile";
+import DashboardMyProfile from "../pages/DashboardPages/MyProfile";
 import SubmittedTask from "../pages/DashboardPages/SubmittedTask";
 
 const router = createBrowserRouter([
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/contacts",
         Component: Contacts,
+      },
+      {
+        path: "/my-profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/contest-details/:id",
@@ -141,7 +150,7 @@ const router = createBrowserRouter([
         path: "/dashboard/my-profile",
         element: (
           <PrivateRoute>
-            <MyProfile></MyProfile>
+            <DashboardMyProfile></DashboardMyProfile>
           </PrivateRoute>
         ),
       },
