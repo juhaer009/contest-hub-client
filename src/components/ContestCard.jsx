@@ -7,7 +7,7 @@ const ContestCard = ({ contest }) => {
   // console.log(location)
   return (
     <div className="card bg-base-100 w-76 shadow-sm">
-      <figure>
+      <figure className="">
         <img src={contest.image} alt="" />
       </figure>
       <div className="card-body">
