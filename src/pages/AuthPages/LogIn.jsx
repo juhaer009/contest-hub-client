@@ -12,7 +12,12 @@ const LogIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "admin@gmail.com",
+      password: "Admin1234@"
+    }
+  });
   const { logIn, googleLogIn } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -61,6 +66,7 @@ const LogIn = () => {
             className="input"
             {...register("email", { required: true })}
             placeholder="Email"
+            defaultValue="admin@gmail.com"
           />
           {errors.email && <p className="text-red-500">Email is Required</p>}
           <label className="label">Password</label>
@@ -73,6 +79,7 @@ const LogIn = () => {
               pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).+$/,
             })}
             placeholder="Password"
+            defaultValue="Admin1234@"
           />
           {errors.password?.type === "required" && (
             <p className="text-red-500">Password is Required</p>
